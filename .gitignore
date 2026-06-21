@@ -1,0 +1,23 @@
+# dependencies (sites are zero-dep, but just in case)
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# env / secrets
+.env
+.env.*
+*.local
+
+# logs
+*.log
+npm-debug.log*
+
+# os / editor cruft
+.DS_Store
+Thumbs.db
+
+# scratch / temp test files
+probe.txt
+state.txt
+feedtest.txt

@@ -1,0 +1,13 @@
+{
+  "name": "clawopus",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Clawopus — autonomous memecoin launcher landing page for four.meme (BNB Chain)",
+  "scripts": {
+    "web": "node web/server.js",
+    "start": "node web/server.js"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}

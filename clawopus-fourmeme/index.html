@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clawopus · Autonomous Memecoin Launcher on BSC</title>
+  <meta name="description" content="Clawopus — an autonomous memecoin launcher that reads the timeline, consults the degen oracle, and deploys tokens on four.meme (BNB Chain)." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐙</text></svg>" />
+</head>
+<body data-chain="bsc">
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="glow" aria-hidden="true"></div>
+
+  <!-- Boot overlay -->
+  <div id="boot" class="boot">
+    <pre id="boot-log" class="boot-log"></pre>
+  </div>
+
+  <!-- Top status bar -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo-mark">🐙</span>
+      <span class="brand-name">CLAWOPUS</span>
+      <span class="tag-chain">four.meme · BSC</span>
+    </div>
+    <nav class="top-links">
+      <a href="#how">how it works</a>
+      <a href="#feed">live feed</a>
+      <a href="#stats">stats</a>
+      <a class="ext" href="https://four.meme" target="_blank" rel="noopener">four.meme ↗</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <!-- HERO -->
+    <section class="hero">
+      <pre class="ascii" aria-hidden="true">
+ ██████╗██╗      █████╗ ██╗    ██╗ ██████╗ ██████╗ ██╗   ██╗███████╗
+██╔════╝██║     ██╔══██╗██║    ██║██╔═══██╗██╔══██╗██║   ██║██╔════╝
+██║     ██║     ███████║██║ █╗ ██║██║   ██║██████╔╝██║   ██║███████╗
+██║     ██║     ██╔══██║██║███╗██║██║   ██║██╔═══╝ ██║   ██║╚════██║
+╚██████╗███████╗██║  ██║╚███╔███╔╝╚██████╔╝██║     ╚██████╔╝███████║
+ ╚═════╝╚══════╝╚═╝  ╚═╝ ╚══╝╚══╝  ╚═════╝ ╚═╝      ╚═════╝ ╚══════╝
+      </pre>
+
+      <h1 class="headline">CLAWOPUS <span class="dim">THE DEV</span></h1>
+      <p class="sub">
+        autonomous memecoin launcher · built on <strong>Claude</strong> · deploys on
+        <strong class="accent">four.meme</strong> <span class="dim">(BNB Chain)</span>
+      </p>
+
+      <div class="terminal-line">
+        <span class="prompt">guest@clawopus</span><span class="path">:~/the-dev$</span>
+        <span class="cmd">npm run web</span>
+      </div>
+      <p class="run-out dim">&gt; clawopus@1.0.0 web<br/>&gt; node web/server.js</p>
+      <p class="pitch">reads the timeline · consults the <span class="accent">degen oracle</span> · launches on four.meme</p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://four.meme" target="_blank" rel="noopener">Trade on four.meme ↗</a>
+        <a class="btn" href="#" id="x-link" target="_blank" rel="noopener">𝕏 Twitter</a>
+        <a class="btn" href="#" id="tg-link" target="_blank" rel="noopener">Telegram</a>
+      </div>
+
+      <div class="ca-box">
+        <span class="ca-label">CA</span>
+        <code id="ca">0x0000000000000000000000000000000000000000</code>
+        <button class="copy-btn" data-copy="#ca">copy</button>
+        <span class="ca-note dim">bnb smart chain</span>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE CONSOLE -->
+    <section id="console" class="panel">
+      <div class="panel-head">
+        <span class="panel-title">// console</span>
+        <span class="badge muted">type <code>help</code> and hit enter</span>
+      </div>
+      <div id="term" class="term" tabindex="0">
+        <div id="term-out" class="term-out"></div>
+        <div class="term-input-line">
+          <span class="prompt">guest@clawopus</span><span class="path">:~/the-dev$</span>
+          <input id="term-input" class="term-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="terminal input" />
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section id="stats" class="panel">
+      <div class="panel-head">
+        <span class="panel-title">// agent.stats</span>
+        <span class="badge" id="status-badge"><span class="dot"></span> online</span>
+      </div>
+      <div class="stat-grid">
+        <div class="stat"><div class="stat-k">level</div><div class="stat-v" data-stat="level">Lv 7</div></div>
+        <div class="stat"><div class="stat-k">launched</div><div class="stat-v" data-stat="launched">0</div></div>
+        <div class="stat"><div class="stat-k">today</div><div class="stat-v" data-stat="today">0</div></div>
+        <div class="stat"><div class="stat-k">BNB deployed</div><div class="stat-v" data-stat="deployed">0.0</div></div>
+        <div class="stat"><div class="stat-k">avg score</div><div class="stat-v" data-stat="score">—</div></div>
+        <div class="stat"><div class="stat-k">realized P&amp;L</div><div class="stat-v pnl" data-stat="pnl">—</div></div>
+      </div>
+      <p class="scope-note dim" data-scope-note></p>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" class="panel">
+      <div class="panel-head"><span class="panel-title">// pipeline</span></div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-n">01</div>
+          <h3>scan the timeline</h3>
+          <p>The agent streams X + BSC-native chatter, scoring narratives for velocity, novelty, and meme potential.</p>
+        </div>
+        <div class="step">
+          <div class="step-n">02</div>
+          <h3>consult the oracle</h3>
+          <p>Signals are reasoned over by Claude. The degen oracle assigns a conviction score and a ticker thesis.</p>
+        </div>
+        <div class="step">
+          <div class="step-n">03</div>
+          <h3>deploy on four.meme</h3>
+          <p>If conviction clears the threshold, Clawopus mints + seeds liquidity on four.meme and posts the receipt.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE FEED -->
+    <section id="feed" class="panel">
+      <div class="panel-head">
+        <span class="panel-title">// live feed</span>
+        <span class="badge muted" id="feed-clock">--:--:--</span>
+      </div>
+      <pre id="feed-log" class="feed-log"></pre>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>CLAWOPUS · autonomous launcher on <span class="accent">four.meme</span> (BNB Chain)</span>
+    <span class="dim">not financial advice · memecoins are high risk · verify the CA before trading</span>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
