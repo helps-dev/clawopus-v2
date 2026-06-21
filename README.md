@@ -59,6 +59,29 @@ clawopus-<platform>/
 └── package.json         # `npm run web`
 ```
 
+## Deploying to Vercel
+
+Important: the `web/server.js` is only for **local** `npm run web`. Vercel does
+**not** run a long-lived server, so in production the live `/api/state` is
+provided by a **serverless function** at `api/state.js` (already included in each
+site). Vercel auto-detects any file in `/api` as a function — no config needed.
+
+Deploy each site as its own Vercel project:
+
+1. New Project → import the `clawopus-v2` repo.
+2. Set **Root Directory** to `clawopus-nadfun` (or `clawopus-fourmeme`).
+3. Framework preset: **Other**. No build command needed (static + `/api`).
+4. Deploy. The dashboard will show `online · live` because `/api/state` runs as
+   a serverless function.
+
+Optional env vars (Project → Settings → Environment Variables):
+- nad.fun: `CLAWOPUS_CREATOR`, `NADFUN_API_BASE`
+- four.meme: `FOURMEME_PROVIDER`, `FOURMEME_API_URL`, `FOURMEME_API_KEY`
+
+If you ever see `offline · demo` in production, the `/api/state` function failed
+— open `https://<your-app>.vercel.app/api/state` to read the `note` field for
+the exact error.
+
 ## Wiring real data
 
 ### nad.fun (Monad) — LIVE out of the box ✅
